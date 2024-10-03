@@ -1,61 +1,40 @@
 ---
+import Btn from './Btn.astro'
 interface Props {
-	title: string;
-	body: string;
-	href: string;
+  image: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  actionTitle: string;
+  includes: string[];
+  action: string;
 }
 
-const { href, title, body } = Astro.props;
----
+const { title } = Astro.props;
+const { subtitle } = Astro.props;
+const { description } = Astro.props;
+const { actionTitle } = Astro.props;
+const { includes } = Astro.props;
+const { action } = Astro.props;
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
-<style>
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 1px;
-		background-color: #23262d;
-		background-image: none;
-		background-size: 400%;
-		border-radius: 7px;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-	}
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: calc(1.5rem - 1px);
-		border-radius: 8px;
-		color: white;
-		background-color: #23262d;
-		opacity: 0.8;
-	}
-	h2 {
-		margin: 0;
-		font-size: 1.25rem;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-	}
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
-		background-image: var(--accent-gradient);
-	}
-	.link-card:is(:hover, :focus-within) h2 {
-		color: rgb(var(--accent-light));
-	}
-</style>
+
+---
+<section class=" p-4 pt-8 w-64 bg-white rounded-lg shadow-md hover:bg-yellow-500 transition duration-500 ease-in-out scale-100 hover:scale-110">
+  <div class="flex flex-row p-2  transition duration-500 ease-in-out">
+    <img src="{image}" alt="Imagen" class="w-10 h-10 object-cover" />
+    <div class="ml-2">
+      <h3 class="text-lg font-bold text-black">{title}</h3>
+      <h4 class="text-sm text-black">{subtitle}</h4>
+    </div>
+  </div>
+  <p class="text-gray-500 p-2 transition duration-500 ease-in-out">{description}</p>
+  <h3 class="text-2xl font-bold p-2  text-black transition duration-500 ease-in-out">{actionTitle}</h3>
+  <h4 class="text-lg p-2  text-black transition duration-500 ease-in-out">What's includes</h4>
+  <div class="flex flex-col p-2  transition duration-500 ease-in-out">
+    <p class="text-sm text-black">{includes[0]}</p>
+    <p class="text-sm text-black">{includes[1]}</p>
+    <p class="text-sm text-black">{includes[2]}</p>
+    <p class="text-sm text-black">{includes[3]}</p>
+  </div>
+  <Btn class="mx-4 mb-4">{action}</Btn>
+</section>
