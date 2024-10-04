@@ -1,19 +1,19 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
-import Header from '../components/Header.astro'
-import AboutUs from '../components/AboutUs.astro';
+import Header from '../layouts/Header.astro'
+import AboutUs from '../layouts/AboutUs.astro';
 import Testymonial from '../layouts/Testymonial.astro';
 import Service from '../layouts/Service.astro';
+import Footer from '../layouts/Footer.astro';
 ---
 
 <Layout title="Mobra">
   <main>
-    <Nav></Nav>
 		<Header></Header>
 		<AboutUs></AboutUs>
-		<!-- <Services></Services> -->
-     <Service></Service>
+    <Service></Service>
     <Testymonial></Testymonial>
+    <Footer></Footer>
   </main>
 </Layout>
