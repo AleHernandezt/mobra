@@ -1,0 +1,59 @@
+---
+import Card from "../components/Card.astro";
+import Titulo from "../components/Titulo.astro";
+---
+
+<section
+  class="p-16 h-screen flex flex-col justify-start items-center relative"
+  id="Services"
+>
+  <Titulo
+    title="Services & Pricing"
+    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
+  />
+
+  <div class="flex gap-10">
+    <Card
+      title="For individuals"
+      subtitle="Basic"
+      description="Lorem ipsum dolor sit amet doloroli sitiol conse ctetur adipiscing elit. "
+      actionTitle="99$"
+      includes={[
+        "All analytics features",
+        "Up to 250,000 tracked visits",
+        "Normal support",
+        "Up to 3 team members",
+      ]}
+      action="Get Started"
+      image="img4.jpg"
+    />
+    <Card
+      title="For individuals"
+      subtitle="Basic"
+      description="Lorem ipsum dolor sit amet doloroli sitiol conse ctetur adipiscing elit. "
+      actionTitle="199$"
+      includes={[
+        "All analytics features",
+        "Up to 1,000,000 tracked visits",
+        "Premium support",
+        "Up to 10 team members",
+      ]}
+      action="Get Started"
+      image="img5.jpg"
+    />
+    <Card
+      title="For individuals"
+      subtitle="Basic"
+      description="Lorem ipsum dolor sit amet doloroli sitiol conse ctetur adipiscing elit. "
+      actionTitle="399$"
+      includes={[
+        "All analytics features",
+        "Up to 5,000,000 tracked visits",
+        "Dedicated support",
+        "Up to 50 team members",
+      ]}
+      action="Get Started"
+      image="img6.jpg"
+    />
+  </div>
+</section>

@@ -9,7 +9,7 @@ interface Props {
   includes: string[];
   action: string;
 }
-
+const { image } = Astro.props;
 const { title } = Astro.props;
 const { subtitle } = Astro.props;
 const { description } = Astro.props;
@@ -21,7 +21,7 @@ const { action } = Astro.props;
 ---
 <section class=" p-4 pt-8 w-64 bg-white rounded-lg shadow-md hover:bg-yellow-500 transition duration-500 ease-in-out scale-100 hover:scale-110">
   <div class="flex flex-row p-2  transition duration-500 ease-in-out">
-    <img src="{image}" alt="Imagen" class="w-10 h-10 object-cover" />
+    <img src={Astro.props.image} alt="Imagen" class="w-10 h-10 object-cover" />
     <div class="ml-2">
       <h3 class="text-lg font-bold text-black">{title}</h3>
       <h4 class="text-sm text-black">{subtitle}</h4>
