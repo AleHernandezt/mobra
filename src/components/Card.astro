@@ -1,5 +1,6 @@
 ---
-import Btn from './Btn.astro'
+import BtnCard2 from './BtnCard2.astro';
+
 interface Props {
   image: string;
   title: string;
@@ -40,5 +41,6 @@ const { action } = Astro.props;
       </div>
     ))}
   </div>
-  <Btn class="mx-4 mb-4">{action}</Btn>
+  <BtnCard2>{action}</BtnCard2>
+
 </section>
