@@ -1,5 +1,6 @@
 ---
 import Btn from './Btn.astro'
+import BtnCard from './BtnCard.astro';
 interface Props {
   image: string;
   title: string;
@@ -20,7 +21,7 @@ const { action } = Astro.props;
 
 ---
 <section class="p-4 pt-8 w-80 lg:w-96 bg-yellow-500 rounded-lg shadow-md hover:bg-white transition duration-500 ease-in-out scale-100 hover:scale-110">
-  <div class="flex flex-row p-2 transition duration-500 ease-in-out items-center justify-center">
+  <div class="flex flex-row p-2 transition duration-500 ease-in-out items-center justify-evenly">
     <img src={Astro.props.image} alt="Imagen" class="w-10 h-10 object-cover" />
     <div class="ml-2">
       <h3 class="text-lg font-bold text-black">{title}</h3>
@@ -41,5 +42,5 @@ const { action } = Astro.props;
       </div>
     ))}
   </div>
-  <Btn class="mx-4 mb-4">{action}</Btn>
+  <BtnCard class="mx-4 mb-4">{action}</BtnCard>
 </section>
