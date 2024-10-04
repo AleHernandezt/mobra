@@ -1,16 +1,21 @@
 ---
-import Card from "./Card.astro";
+import Card from "../components/Card.astro";
+import Titulo from "../components/Titulo.astro";
 ---
 
 <section
   class="px-16 h-screen flex flex-col justify-start items-center relative"
 >
-  <div class="flex flex-col w-full justify-start gap-8">
+  <!-- <div class="flex flex-col w-full justify-start gap-8">
     <h2 class="text-2xl text-yellow-500 font-bold">Services & Pricing</h2>
     <h3 class="text-xl pb-12">
       Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?
     </h3>
-  </div>
+  </div> -->
+  <Titulo
+    title="Services & Pricing"
+    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
+  />
 
   <div class="flex gap-10">
     <Card
@@ -18,7 +23,7 @@ import Card from "./Card.astro";
       subtitle="Basic"
       description="Lorem ipsum dolor sit amet doloroli sitiol conse ctetur adipiscing elit. "
       actionTitle="99$"
-      includes={['agua', 'tierra', 'viento', 'fuego']}
+      includes={["agua", "tierra", "viento", "fuego"]}
       action="Get Started"
       image="car1.webp"
     />
@@ -36,10 +41,9 @@ import Card from "./Card.astro";
       subtitle="Basic"
       description="Lorem ipsum dolor sit amet doloroli sitiol conse ctetur adipiscing elit. "
       actionTitle="99$"
-      includes={['agua', 'tierra', 'viento', 'fuego']}
+      includes={["agua", "tierra", "viento", "fuego"]}
       action="Get Started"
       image="car1.webp"
     />
-    
   </div>
 </section>

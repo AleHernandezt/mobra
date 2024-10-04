@@ -1,0 +1,40 @@
+---
+import Test from "../components/Test.astro";
+import Titulo from "../components/Titulo.astro";
+---
+
+<section
+  class="px-16 h-screen flex flex-col justify-start items-center relative"
+>
+  <!-- <div class="flex flex-col w-full justify-start gap-8">
+  <h2 class="text-2xl text-yellow-500 font-bold">Services & Pricing</h2>
+  <h3 class="text-xl pb-12">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?
+  </h3>
+</div> -->
+  <Titulo
+    title="Testymonial"
+    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
+  />
+
+  <div
+    class="flex flex-wrap justify-center gap-4 md:flex-wrap md:justify-center"
+  >
+    <Test
+      autor="Pastor"
+      testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
+    />
+    <Test
+      autor="Pastor"
+      testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
+    />
+    <Test
+      autor="Pastor"
+      testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
+    />
+    <Test
+      autor="Pastor"
+      testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
+    />
+  </div>
+</section>

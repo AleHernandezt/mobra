@@ -1,0 +1,19 @@
+---
+import Btn from './Btn.astro'
+interface Props {
+  testimonio: string;
+  autor: string;
+  class?: string
+}
+
+const { testimonio } = Astro.props;
+const { autor } = Astro.props;
+
+
+---
+<section class="rounded-lg shadow-md p-4 border-4 border-yellow-500 bg-transparent w-1/2 transition duration-500 ease-in-out scale-100 hover:scale-110">
+  <h3 class="text-xl text-yellow-500 font-bold">{autor}</h3>
+  <p class="text-gray-500">{testimonio}</p>
+  <div class="flex flex-row mt-2">
+  </div>
+</section>
