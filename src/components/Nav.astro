@@ -20,17 +20,31 @@
   const h1 = nav.querySelector('h1');
   const navContainer = nav.querySelector('.flex.justify-between');
 
+  let scrollPosition = 0;
+  let maxScrollPosition = 200; // ajusta este valor para controlar la velocidad del movimiento
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 100) {
+    scrollPosition = window.scrollY;
+    const centerX = window.innerWidth / 2;
+    const percentage = scrollPosition / maxScrollPosition;
+    const translateX = (centerX - h1.offsetLeft) * percentage;
+
+    if (scrollPosition > maxScrollPosition) {
       linksContainer.classList.add('hidden');
       linksContainer.classList.remove('flex');
       navContainer.classList.add('justify-center');
-      h1.classList.add('mx-auto');
+      h1.style.transform = `translateX(${centerX - h1.offsetLeft}px)`;
     } else {
       linksContainer.classList.remove('hidden');
       linksContainer.classList.add('flex');
       navContainer.classList.remove('justify-center');
-      h1.classList.remove('mx-auto');
+      h1.style.transform = `translateX(${translateX}px)`;
     }
+  });
+
+  // Actualiza la posición del centro cuando se cambia el tamaño de la pantalla
+  window.addEventListener('resize', () => {
+    const centerX = window.innerWidth / 2;
+    h1.style.transform = `translateX(${centerX - h1.offsetLeft}px)`;
   });
 </script>
