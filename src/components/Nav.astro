@@ -1,11 +1,11 @@
 ---
 ---
 <nav class="p-4 fixed top-0 left-0 w-full z-10 transition duration-300 bg-gradient-to-b from-[#030303] to-[#13161444]">
-  <div class="flex justify-between w-full transition duration-300">
+  <div class="flex justify-between w-full transition duration-500">
     <h1 class="text-3xl font-semibold transition duration-500">
       <a href="#" class="text-inherit">MOBRA</a>
     </h1>
-    <div class="font-bold flex justify-around gap-24 items-center transition duration-300 opacity-100">
+    <div class="font-bold flex justify-around gap-24 items-center transition duration-500 opacity-100">
       <a href="#About">About</a>
       <a href="#Services">Services</a>
       <a href="#Testymonial">Testymonials</a>
@@ -18,7 +18,6 @@
   const nav = document.querySelector('nav');
   const linksContainer = nav.querySelector('.flex.justify-around');
   const h1 = nav.querySelector('h1');
-  const navContainer = nav.querySelector('.flex.justify-between');
 
   let scrollPosition = 0;
   let maxScrollPosition = 200; // ajusta este valor para controlar la velocidad del movimiento
@@ -26,25 +25,25 @@
   window.addEventListener('scroll', () => {
     scrollPosition = window.scrollY;
     const centerX = window.innerWidth / 2;
-    const percentage = scrollPosition / maxScrollPosition;
-    const translateX = (centerX - h1.offsetLeft) * percentage;
+    const h1Width = h1.offsetWidth;
+    const translateX = centerX - (h1Width / 2);
 
     if (scrollPosition > maxScrollPosition) {
       linksContainer.classList.add('hidden');
-      linksContainer.classList.remove('flex');
-      navContainer.classList.add('justify-center');
-      h1.style.transform = `translateX(${centerX - h1.offsetLeft}px)`;
+      h1.classList.add('flex', 'justify-center', 'w-full');
+      h1.style.transform = `translateX(${translateX}px)`;
     } else {
       linksContainer.classList.remove('hidden');
-      linksContainer.classList.add('flex');
-      navContainer.classList.remove('justify-center');
-      h1.style.transform = `translateX(${translateX}px)`;
+      h1.classList.remove('flex', 'justify-center', 'w-full');
+      h1.style.transform = `translateX(0px)`;
     }
   });
 
   // Actualiza la posición del centro cuando se cambia el tamaño de la pantalla
   window.addEventListener('resize', () => {
     const centerX = window.innerWidth / 2;
-    h1.style.transform = `translateX(${centerX - h1.offsetLeft}px)`;
+    const h1Width = h1.offsetWidth;
+    const translateX = centerX - (h1Width / 2);
+    h1.style.transform = `translateX(${translateX}px)`;
   });
 </script>
