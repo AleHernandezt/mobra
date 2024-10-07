@@ -10,16 +10,16 @@ import Titulo from "../components/Titulo.astro";
     title="About Us"
     subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
   />
-  <div class="container mx-auto p-6 max-w-7xl"> <!-- reduced padding -->
+  <div class="container mx-auto p-6 max-w-7xl relative"> <!-- reduced padding -->
     <div class="flex flex-wrap justify-center gap-4"> <!-- reduced margin bottom and gap -->
-      <div class="w-2/5 h-80 relative rounded-lg overflow-hidden group">
+      <div class="w-2/5 h-80 rounded-lg overflow-hidden group absolute left-0">
         <img
           src="/img1.jpg"
           alt="car detail"
           class="w-full h-full object-cover scale-100 transition duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
-      <div class="flex flex-wrap justify-center"> <!-- reduced gap -->
+      <div class="flex flex-wrap justify-center gap-0"> <!-- reduced gap -->
         <div class="w-4/6 h-36 relative rounded-lg overflow-hidden group">
           <img
             src="/img2.jpg"
@@ -28,7 +28,7 @@ import Titulo from "../components/Titulo.astro";
             id="img2"
           />
         </div>
-        <div class="w-1/3 h-36 relative rounded-lg overflow-hidden group">
+        <div class="w-4/6 h-36 relative rounded-lg overflow-hidden group">
           <img
             src="/img3.jpg"
             alt="car detail"
@@ -57,7 +57,7 @@ import Titulo from "../components/Titulo.astro";
     });
 
     img2.addEventListener('mouseout', () => {
-      paragraph.textContent = 'Original text';
+      paragraph.textContent = 'paragraph';
     });
 
     img3.addEventListener('mouseover', () => {
