@@ -21,17 +21,25 @@
 
   let scrollPosition = 0;
   let maxScrollPosition = 200; // ajusta este valor para controlar la velocidad del movimiento
+  let easing = 0.1; // valor de suavizado (entre 0 y 1)
 
   window.addEventListener('scroll', () => {
     scrollPosition = window.scrollY;
-    const centerX = window.innerWidth / 2;
+    const centerX = window.innerWidth / 3;
     const h1Width = h1.offsetWidth;
     const translateX = centerX - (h1Width / 2);
 
     if (scrollPosition > maxScrollPosition) {
       linksContainer.classList.add('hidden');
       h1.classList.add('flex', 'justify-center', 'w-full');
-      h1.style.transform = `translateX(${translateX}px)`;
+
+      // interpolación del valor de la posición
+      const targetX = translateX;
+      const currentX = h1.offsetLeft;
+      const diffX = targetX - currentX;
+      const easingX = diffX * easing;
+
+      h1.style.transform = `translateX(${currentX + easingX}px)`;
     } else {
       linksContainer.classList.remove('hidden');
       h1.classList.remove('flex', 'justify-center', 'w-full');
