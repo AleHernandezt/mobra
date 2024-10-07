@@ -11,15 +11,15 @@ import Titulo from "../components/Titulo.astro";
     subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
   />
   <div class="container mx-auto p-6 max-w-7xl relative"> <!-- reduced padding -->
-    <div class="flex flex-wrap justify-center gap-4"> <!-- reduced margin bottom and gap -->
-      <div class="w-2/5 h-80 rounded-lg overflow-hidden group absolute left-0">
+    <div class="flex flex-wrap justify-center gap-4 absolute transition-opacity duration-500" id="imgContainer">
+      <div class="w-2/5 h-80 rounded-lg overflow-hidden group left-0">
         <img
           src="/img1.jpg"
           alt="car detail"
           class="w-full h-full object-cover scale-100 transition duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
-      <div class="flex flex-wrap justify-center gap-0"> <!-- reduced gap -->
+      <div class="flex flex-wrap justify-center gap-4"> <!-- reduced gap -->
         <div class="w-4/6 h-36 relative rounded-lg overflow-hidden group">
           <img
             src="/img2.jpg"
@@ -28,7 +28,7 @@ import Titulo from "../components/Titulo.astro";
             id="img2"
           />
         </div>
-        <div class="w-4/6 h-36 relative rounded-lg overflow-hidden group">
+        <div class="w-1/3 h-36 relative rounded-lg overflow-hidden group">
           <img
             src="/img3.jpg"
             alt="car detail"
@@ -37,35 +37,54 @@ import Titulo from "../components/Titulo.astro";
           />
         </div>
       </div>
+      <div class="flex justify-end flex-grow">
+        <p class="text-sm text-white mt-0 w-6/12 text-justify" id="paragraph"> 
+          basta de Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, veritatis. Nostrum, totam. Quod mollitia, molestias necessitatibus unde eveniet corporis cum odit consectetur ex voluptatem aspernatur natus dolorum dolores optio! Quam.
+        </p>
+      </div>
     </div>
-    <div class="flex justify-end flex-grow">
-      <p class="text-sm text-white mt-0 w-6/12 text-justify" id="paragraph"> 
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt corporis debitis eos, adipisci perspiciatis exercitationem nam omnis similique fugiat ducimus perferendis voluptate magnam accusantium, a, consequatur quas? Accusantium, maxime? Rerum?
-      </p>
-    </div>
+   
   </div>
 </section>
 
-<script>
+<script lang="ts">
   const img2 = document.getElementById('img2');
   const img3 = document.getElementById('img3');
   const paragraph = document.getElementById('paragraph');
 
   if (img2 && img3 && paragraph) {
     img2.addEventListener('mouseover', () => {
-      paragraph.textContent = 'New text when hovering over the second image!';
+      paragraph.textContent = 'second image! estoy escuchando nirvana y de verdad que sobrevalorados estan, tiene solo 1 album bueno y es in utero pq nervermind no es la gran cosa, solo que el catire se murio y por eso famoso';
     });
 
     img2.addEventListener('mouseout', () => {
-      paragraph.textContent = 'paragraph';
+      paragraph.textContent = 'paragraph de diosmio ya basta esto es pa saber cualqueier tonteria pero necesito llenar esto de algun texto asi que sera chistoo ';
     });
 
     img3.addEventListener('mouseover', () => {
-      paragraph.textContent = 'New text when hovering over the third image!';
+      paragraph.textContent = 'third image! con la tercera imagen contare como repare la silla que se me partio, compre pegatanque y arregle la silla, la puse a secar unos dias y hoy la arme, esta fina';
     });
 
     img3.addEventListener('mouseout', () => {
-      paragraph.textContent = 'Original text';
+      paragraph.textContent = 'Original text original combination como el apa con el canserbero diosmio que buen album apa y can, tiene stop stop viene la wiu wiu';
     });
   }
+
+  const imgContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4');
+  const imgContainerTop = imgContainer.offsetTop;
+  const imgContainerHeight = imgContainer.offsetHeight;
+
+  // Update your JavaScript code to add/remove the 'visible' class
+  window.addEventListener('scroll', () => {
+  const scrollPosition = window.scrollY;
+  if (scrollPosition >= imgContainerTop && scrollPosition <= imgContainerTop + imgContainerHeight) {
+    imgContainer.style.visibility = 'hidden';
+    imgContainer.classList.remove('visible'); // Remove the 'visible' class
+    imgContainer.classList.add('hidden'); // Add the 'hidden' class
+  } else {
+    imgContainer.style.visibility = 'visible';
+    imgContainer.classList.remove('hidden'); // Remove the 'hidden' class
+    imgContainer.classList.add('visible'); // Add the 'visible' class
+  }
+});
 </script>
