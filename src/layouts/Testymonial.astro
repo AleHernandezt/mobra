@@ -24,8 +24,8 @@ import Titulo from "../components/Titulo.astro";
     <!-- Navigation buttons -->
     <a
       id="prev-btn"
-      class="h-12 bg-yellow-400 text-[#131614] border-2 border-solid border-yellow-400 hover:bg-[#131614] hover:border-yellow-400 hover:text-white transition duration-300 ease-in-out py-1 px-8 hover:scale-105 flex items-center justify-center w-full rounded-lg"
-    >
+      class="h-12 bg-yellow-400 text-[#131614] border-2 border-solid border-yellow-400 hover:bg-[#131614] hover:border-yellow-400 hover:text-white duration-300 ease-in-out py-1 px-8 hover:scale-105 flex items-center justify-center w-full rounded-lg scale-up transition"
+      >
       <svg
         class="w-4 h-4"
         fill="none"
@@ -42,8 +42,8 @@ import Titulo from "../components/Titulo.astro";
     </a>
     <a
       id="next-btn"
-      class="h-12 bg-[#131614] border-2 border-solid border-yellow-400 hover:bg-yellow-500 hover:border-yellow-400 hover:text-[#131614] transition duration-300 ease-in-out py-1 px-8 hover:scale-105 flex items-center justify-center w-full rounded-lg"
-    >
+      class="h-12 bg-[#131614] border-2 border-solid border-yellow-400 hover:bg-yellow-500 hover:border-yellow-400 hover:text-[#131614] duration-300 ease-in-out py-1 px-8 hover:scale-105 flex items-center justify-center w-full rounded-lg scale-up transition"
+      >
       <p class="font-bold mr-2 gap-4">Boton</p>
       <svg
         class="w-4 h-4"
@@ -60,6 +60,42 @@ import Titulo from "../components/Titulo.astro";
     </a>
   </div>
 </section>
+
+<style>
+  /* Animación de escala */
+  .scale-up {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.scale-down {
+  transform: scale(0.9);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Animación de opacidad */
+.fade-in {
+  opacity: 1;
+  transition: all 0.5s ease-in-out;
+  animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-out {
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+}
+</style>
 
 <script lang="ts">
   // Get the testimonial container and navigation buttons
@@ -96,29 +132,38 @@ import Titulo from "../components/Titulo.astro";
 
   // Add event listeners to the navigation buttons
   prevBtn.addEventListener("click", () => {
-    currentIndex--;
-    if (currentIndex < 0) {
-      currentIndex = testimonials.length - 1;
-    }
-    renderTestimonial();
-  });
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = testimonials.length - 1;
+  }
+  renderTestimonial();
+  animateButton(prevBtn, "scale-up");
+});
 
-  nextBtn.addEventListener("click", () => {
-    currentIndex++;
-    if (currentIndex >= testimonials.length) {
-      currentIndex = 0;
-    }
-    renderTestimonial();
-  });
+nextBtn.addEventListener("click", () => {
+  currentIndex++;
+  if (currentIndex >= testimonials.length) {
+    currentIndex = 0;
+  }
+  renderTestimonial();
+  animateButton(nextBtn, "scale-up");
+});
 
+// Function to animate the button
+function animateButton(button, animation) {
+  button.classList.add(animation);
+  setTimeout(() => {
+    button.classList.remove(animation);
+  }, 300);
+}
   // Function to render the current testimonial
   function renderTestimonial() {
-    const testimonial = testimonials[currentIndex];
-    testimonialContainer.innerHTML = `
-      <div class="rounded-lg shadow-md p-4 border-2 border-yellow-500 bg-transparent transition duration-500 ease-in-out scale-100 hover:scale-110">
-        <p class="text-lg font-bold">${testimonial.autor}</p>
-        <p class="text-gray-600">${testimonial.testimonio}</p>
-        <div class="flex gap-2 pt-2">
+  const testimonial = testimonials[currentIndex];
+  testimonialContainer.innerHTML = `
+    <div class="rounded-lg shadow-md p-4 border-2 border-yellow-500 bg-transparent transition duration-500 ease-in-out scale-100 hover:scale-110">
+      <p class="text-lg font-bold">${testimonial.autor}</p>
+      <p class="text-gray-600">${testimonial.testimonio}</p>
+      <div class="flex gap-2 pt-2">
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
@@ -129,5 +174,9 @@ import Titulo from "../components/Titulo.astro";
       </div>
       
     `;
+    testimonialContainer.classList.add("fade-in");
+  setTimeout(() => {
+    testimonialContainer.classList.remove("fade-in");
+  }, 1000);
   }
 </script>
