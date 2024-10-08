@@ -16,42 +16,34 @@
 
 <script lang="ts">
   const nav = document.querySelector('nav');
-  const linksContainer = nav.querySelector('.flex.justify-around');
-  const h1 = nav.querySelector('h1');
+  const h1 = document.querySelector('h1');
+  const linksContainer = document.querySelector('.font-bold.flex');
 
-  let scrollPosition = 0;
-  let maxScrollPosition = 200; // ajusta este valor para controlar la velocidad del movimiento
-  let easing = 0.1; // valor de suavizado (entre 0 y 1)
+  let initialTop = h1.offsetTop;
+  let centerX = window.innerWidth / 2;
 
   window.addEventListener('scroll', () => {
-    scrollPosition = window.scrollY;
-    const centerX = window.innerWidth / 3;
-    const h1Width = h1.offsetWidth;
-    const translateX = centerX - (h1Width / 2);
+    const scrollPosition = window.scrollY;
+    const navHeight = nav.offsetHeight;
 
-    if (scrollPosition > maxScrollPosition) {
-      linksContainer.classList.add('hidden');
-      h1.classList.add('flex', 'justify-center', 'w-full');
+    if (scrollPosition > navHeight) {
+      // Animate h1 to center
+      h1.style.transform = `translateX(${centerX - h1.offsetWidth / 2}px)`;
+      h1.style.transition = 'transform 0.5s ease-in-out';
 
-      // interpolación del valor de la posición
-      const targetX = translateX;
-      const currentX = h1.offsetLeft;
-      const diffX = targetX - currentX;
-      const easingX = diffX * easing;
+      // Hide links container
+      linksContainer.style.opacity = '0';
 
-      h1.style.transform = `translateX(${currentX + easingX}px)`;
+      // Keep h1 and its child a element visible
+      h1.style.opacity = '1';
+      h1.querySelector('a').style.opacity = '1';
     } else {
-      linksContainer.classList.remove('hidden');
-      h1.classList.remove('flex', 'justify-center', 'w-full');
+      // Animate h1 back to original position
       h1.style.transform = `translateX(0px)`;
-    }
-  });
+      h1.style.transition = 'transform 0.5s ease-in-out';
 
-  // Actualiza la posición del centro cuando se cambia el tamaño de la pantalla
-  window.addEventListener('resize', () => {
-    const centerX = window.innerWidth / 2;
-    const h1Width = h1.offsetWidth;
-    const translateX = centerX - (h1Width / 2);
-    h1.style.transform = `translateX(${translateX}px)`;
+      // Show links container
+      linksContainer.style.opacity = '1';
+    }
   });
 </script>
