@@ -10,8 +10,8 @@ import Titulo from "../components/Titulo.astro";
     title="About Us"
     subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
   />
-  <div class="container mx-auto p-6 max-w-7xl relative"> <!-- reduced padding -->
-    <div class="flex flex-wrap justify-center gap-4 absolute transition-opacity duration-500" id="imgContainer">
+  <div class="container mx-auto p-6 max-w-7xl relative"> 
+    <div class="flex flex-wrap justify-center gap-4 absolute transition-opacity duration-500 visible" id="imgContainer">
       <div class="w-2/5 h-80 rounded-lg overflow-hidden group left-0">
         <img
           src="/img1.jpg"
@@ -19,7 +19,7 @@ import Titulo from "../components/Titulo.astro";
           class="w-full h-full object-cover scale-100 transition duration-300 ease-in-out group-hover:scale-110"
         />
       </div>
-      <div class="flex flex-wrap justify-center gap-4"> <!-- reduced gap -->
+      <div class="flex flex-wrap justify-center gap-4"> 
         <div class="w-4/6 h-36 relative rounded-lg overflow-hidden group">
           <img
             src="/img2.jpg"
@@ -38,7 +38,7 @@ import Titulo from "../components/Titulo.astro";
         </div>
       </div>
       <div class="flex justify-end flex-grow">
-        <p class="text-sm text-white mt-0 text-justify pt-4" id="paragraph"> 
+        <p class="text-sm text-white mt-0 text-justify pt-8" id="paragraph"> 
           basta de Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, veritatis. Nostrum, totam. Quod mollitia, molestias necessitatibus unde eveniet corporis cum odit consectetur ex voluptatem aspernatur natus dolorum dolores optio! Quam.
         </p>
       </div>
@@ -78,11 +78,9 @@ import Titulo from "../components/Titulo.astro";
   window.addEventListener('scroll', () => {
   const scrollPosition = window.scrollY;
   if (scrollPosition >= imgContainerTop && scrollPosition <= imgContainerTop + imgContainerHeight) {
-    imgContainer.style.visibility = 'hidden';
     imgContainer.classList.remove('visible'); // Remove the 'visible' class
     imgContainer.classList.add('hidden'); // Add the 'hidden' class
   } else {
-    imgContainer.style.visibility = 'visible';
     imgContainer.classList.remove('hidden'); // Remove the 'hidden' class
     imgContainer.classList.add('visible'); // Add the 'visible' class
   }
