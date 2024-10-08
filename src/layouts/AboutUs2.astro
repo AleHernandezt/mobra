@@ -48,41 +48,34 @@ class="p-16 pt-20 flex flex-col justify-start items-center relative"
 </section>
 
 <script lang="ts">
-  const img2 = document.getElementById('img2');
-  const img3 = document.getElementById('img3');
-  const paragraph = document.getElementById('paragraph');
+  const imgContainer = document.querySelector('#imgContainer');
+  const images = imgContainer.querySelectorAll('img');
+  const paragraph = document.querySelector('#paragraph');
 
-  if (img2 && img3 && paragraph) {
-    img2.addEventListener('mouseover', () => {
-      paragraph.textContent = 'second image! estoy escuchando nirvana y de verdad que sobrevalorados estan, tiene solo 1 album bueno y es in utero pq nervermind no es la gran cosa, solo que el catire se murio y por eso famoso';
-    });
+  let imgContainerTop = imgContainer.offsetTop;
+  let imgContainerHeight = imgContainer.offsetHeight;
+  let windowHeight = window.innerHeight;
 
-    img2.addEventListener('mouseout', () => {
-      paragraph.textContent = 'paragraph de diosmio ya basta esto es pa saber cualqueier tonteria pero necesito llenar esto de algun texto asi que sera chistoo ';
-    });
-
-    img3.addEventListener('mouseover', () => {
-      paragraph.textContent = 'third image! con la tercera imagen contare como repare la silla que se me partio, compre pegatanque y arregle la silla, la puse a secar unos dias y hoy la arme, esta fina';
-    });
-
-    img3.addEventListener('mouseout', () => {
-      paragraph.textContent = 'Original text original combination como el apa con el canserbero diosmio que buen album apa y can, tiene stop stop viene la wiu wiu';
-    });
-  }
-
-  const imgContainer = document.querySelector('.flex.flex-wrap.justify-center.gap-4');
-  const imgContainerTop = imgContainer.offsetTop;
-  const imgContainerHeight = imgContainer.offsetHeight;
-
-  // Update your JavaScript code to add/remove the 'visible' class
   window.addEventListener('scroll', () => {
-  const scrollPosition = window.scrollY;
-  if (scrollPosition >= imgContainerTop && scrollPosition <= imgContainerTop + imgContainerHeight) {
-    imgContainer.classList.remove('visible'); // Remove the 'visible' class
-    imgContainer.classList.add('hidden'); // Add the 'hidden' class
-  } else {
-    imgContainer.classList.remove('hidden'); // Remove the 'hidden' class
-    imgContainer.classList.add('visible'); // Add the 'visible' class
-  }
-});
+    const scrollPosition = window.scrollY;
+    const imgContainerVisible = scrollPosition + windowHeight >= imgContainerTop && scrollPosition <= imgContainerTop + imgContainerHeight;
+
+    if (imgContainerVisible) {
+      // Images are coming into view, fade in
+      images.forEach((img) => {
+        img.style.opacity = '0';
+        img.style.transition = 'opacity 0.5s ease-in-out';
+      });
+      paragraph.style.opacity = '0';
+      paragraph.style.transition = 'opacity 0.5s ease-in-out';
+    } else {
+      // Images are leaving the view, fade out
+      images.forEach((img) => {
+        img.style.opacity = '1';
+        img.style.transition = 'opacity 0.5s ease-in-out';
+      });
+      paragraph.style.opacity = '1';
+      paragraph.style.transition = 'opacity 0.5s ease-in-out';
+    }
+  });
 </script>
