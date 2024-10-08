@@ -1,5 +1,4 @@
 ---
-import Test from "../components/Test.astro";
 import Titulo from "../components/Titulo.astro";
 ---
 
@@ -13,25 +12,122 @@ import Titulo from "../components/Titulo.astro";
   />
 
   <div class="flex justify-around gap-8 relative">
+    <!-- Carousel container -->
     <div class="flex flex-col gap-8">
-      <Test
-        autor="Pastor"
-        testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
-      />
-      <Test
-        autor="Pastor"
-        testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
-      />
-    </div>
-    <div class="flex flex-col gap-8">
-      <Test
-        autor="Pastor"
-        testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
-      />
-      <Test
-        autor="Pastor"
-        testimonio="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled"
-      />
+      <!-- Testimonial component will be rendered here -->
+      <div id="testimonial-container"></div>
     </div>
   </div>
+
+  <!-- Contenedor para los botones -->
+  <div class="flex justify-center mt-8 gap-8">
+    <!-- Navigation buttons -->
+    <a
+      id="prev-btn"
+      class="h-12 bg-yellow-400 text-[#131614] border-2 border-solid border-yellow-400 hover:bg-[#131614] hover:border-yellow-400 hover:text-white transition duration-300 ease-in-out py-1 px-8 hover:scale-105 flex items-center justify-center w-full rounded-lg"
+    >
+      <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h14"></path>
+      </svg>
+      <p class="font-bold mr-2 gap-4">Boton</p>
+    </a>
+    <a
+      id="next-btn"
+      class="h-12 bg-[#131614] border-2 border-solid border-yellow-400 hover:bg-yellow-500 hover:border-yellow-400 hover:text-[#131614] transition duration-300 ease-in-out py-1 px-8 hover:scale-105 flex items-center justify-center w-full rounded-lg"
+    >
+      <p class="font-bold mr-2 gap-4">Boton</p>
+      <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+      </svg>
+    </a>
+  </div>
 </section>
+
+<script lang="ts">
+  // Get the testimonial container and navigation buttons
+  const testimonialContainer = document.getElementById("testimonial-container");
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+
+  // Define the testimonials data
+  const testimonials = [
+    {
+      autor: "Pastor",
+      testimonio:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled",
+    },
+    {
+      autor: "Pastor",
+      testimonio: "Lorem Ipsum diosmio espero que si funcione el boton",
+    },
+    {
+      autor: "Pastor",
+      testimonio: "corto",
+    },
+    {
+      autor: "Pastor",
+      testimonio: "Lorem Ipsum is que fastidio",
+    },
+  ];
+
+  // Initialize the current testimonial index
+  let currentIndex = 0;
+
+  // Render the initial testimonial
+  renderTestimonial();
+
+  // Add event listeners to the navigation buttons
+  prevBtn.addEventListener("click", () => {
+    currentIndex--;
+    if (currentIndex < 0) {
+      currentIndex = testimonials.length - 1;
+    }
+    renderTestimonial();
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex++;
+    if (currentIndex >= testimonials.length) {
+      currentIndex = 0;
+    }
+    renderTestimonial();
+  });
+
+  // Function to render the current testimonial
+  function renderTestimonial() {
+    const testimonial = testimonials[currentIndex];
+    testimonialContainer.innerHTML = `
+      <div class="rounded-lg shadow-md p-4 border-2 border-yellow-500 bg-transparent transition duration-500 ease-in-out scale-100 hover:scale-110">
+        <p class="text-lg font-bold">${testimonial.autor}</p>
+        <p class="text-gray-600">${testimonial.testimonio}</p>
+        <div class="flex gap-2 pt-2">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="Gold" d="m19.555 23.411l-6.664-3.285a1.26 1.26 0 0 0-1.202.045l.006-.003l-6.416 3.75a.61.61 0 0 1-.902-.626v.003l.994-7.542a1.25 1.25 0 0 0-.392-1.082l-.001-.001l-4.571-4.247a1.265 1.265 0 0 1 .648-2.17l.007-.001l5.987-1.108c.421-.078.765-.355.935-.727l.003-.008L10.478.746a1.272 1.272 0 0 1 2.271-.087l.003.007l2.881 5.471c.197.365.558.62.981.666h.006l6.045.681a1.265 1.265 0 0 1 .811 2.119l.001-.001l-4.27 4.562a1.25 1.25 0 0 0-.315 1.116l-.001-.008l1.52 7.453a.61.61 0 0 1-.86.683l.004.002z"/></svg>
+
+  </div>
+      </div>
+      
+    `;
+  }
+</script>
