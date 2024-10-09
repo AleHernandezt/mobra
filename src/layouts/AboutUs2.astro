@@ -64,18 +64,18 @@ class="p-16 pt-20 flex flex-col justify-start items-center relative"
       // Images are coming into view, fade in
       images.forEach((img) => {
         img.style.opacity = '0';
-        img.style.transition = 'opacity 0.5s ease-in-out';
+        img.style.transition = 'opacity 0.1s ease-in-out';
       });
       paragraph.style.opacity = '0';
-      paragraph.style.transition = 'opacity 0.5s ease-in-out';
+      paragraph.style.transition = 'opacity 0.1s ease-in-out';
     } else {
       // Images are leaving the view, fade out
       images.forEach((img) => {
         img.style.opacity = '1';
-        img.style.transition = 'opacity 0.5s ease-in-out';
+        img.style.transition = 'opacity 0.1s ease-in-out';
       });
       paragraph.style.opacity = '1';
-      paragraph.style.transition = 'opacity 0.5s ease-in-out';
+      paragraph.style.transition = 'opacity 0.1s ease-in-out';
     }
   });
 </script>
