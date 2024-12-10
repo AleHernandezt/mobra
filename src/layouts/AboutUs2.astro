@@ -3,7 +3,7 @@ import Titulo from "../components/Titulo.astro";
 ---
 
 <section
-class="p-16 pt-20 flex flex-col justify-start items-center relative"
+  class="p-16 pt-20 flex flex-col justify-start items-center relative"
   id="About"
 >
   <Titulo
@@ -11,12 +11,13 @@ class="p-16 pt-20 flex flex-col justify-start items-center relative"
     subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
   />
   <div class="container mx-auto p-6 max-w-7xl relative pb-96"> 
-    <div class="flex flex-wrap justify-center gap-4 absolute transition-opacity duration-500 visible" id="imgContainer">
-      <div class="w-2/5 h-80 rounded-lg overflow-hidden group left-0">
+    <div class="flex flex-wrap justify-center gap-4 absolute" id="imgContainer">
+      <div class="w-2/5 h-80 rounded-lg overflow-hidden group">
         <img
           src="/img1.jpg"
           alt="car detail"
-          class="w-full h-full object-cover scale-100 transition duration-300 ease-in-out group-hover:scale-110"
+          class="w-full h-full object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
+          id="img1"
         />
       </div>
       <div class="flex flex-wrap justify-center gap-4"> 
@@ -24,7 +25,7 @@ class="p-16 pt-20 flex flex-col justify-start items-center relative"
           <img
             src="/img2.jpg"
             alt="car detail"
-            class="w-full h-full object-cover scale-100 transition duration-300 ease-in-out group-hover:scale-110 hover:text"
+            class="w-full h-full object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
             id="img2"
           />
         </div>
@@ -32,18 +33,17 @@ class="p-16 pt-20 flex flex-col justify-start items-center relative"
           <img
             src="/img3.jpg"
             alt="car detail"
-            class="w-full h-full object-cover scale-100 transition duration-300 ease-in-out group-hover:scale-110"
+            class="w-full h-full object-cover transition-transform duration-300 ease-in-out transform group-hover:scale-110"
             id="img3"
           />
         </div>
       </div>
       <div class="flex justify-center flex-grow">
-        <p class="text-sm text-white mt-0 text-justify pt-8" id="paragraph"> 
-          basta de Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, veritatis. Nostrum, totam. Quod mollitia, molestias necessitatibus unde eveniet corporis cum odit consectetur ex voluptatem aspernatur natus dolorum dolores optio! Quam.
+        <p class="text-sm text-white mt-0 text-justify pt-8 opacity-100 transition-opacity duration-500 ease-in-out" id="paragraph"> 
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, veritatis. Nostrum, totam. Quod mollitia, molestias necessitatibus unde eveniet corporis cum odit consectetur ex voluptatem aspernatur natus dolorum dolores optio! Quam.
         </p>
       </div>
     </div>
-   
   </div>
 </section>
 
@@ -52,30 +52,32 @@ class="p-16 pt-20 flex flex-col justify-start items-center relative"
   const images = imgContainer.querySelectorAll('img');
   const paragraph = document.querySelector('#paragraph');
 
-  let imgContainerTop = imgContainer.offsetTop;
-  let imgContainerHeight = imgContainer.offsetHeight;
-  let windowHeight = window.innerHeight;
+  // Cambiar el texto del párrafo al hacer hover sobre las imágenes
+  images.forEach((img, index) => {
+    img.addEventListener('mouseover', () => {
+      paragraph.style.opacity = '0'; // Oculta el texto suavemente
+      setTimeout(() => {
+        switch (index) {
+          case 0:
+            paragraph.textContent = "Dr. Ing. h.c. F. Porsche Aktiengesellschaft, normalmente abreviado como Porsche AG​ es un fabricante de automóviles alemán especializado en automóviles deportivos de lujo de alta gama.";
+            break;
+          case 1:
+            paragraph.textContent = "Ford Motor Company es una empresa multinacional fabricante de automóviles de origen estadounidense. Con su sede en Dearborn, Míchigan, es una de las mayores empresas automovilísticas del mundo.";
+            break;
+          case 2:
+            paragraph.textContent = "Toyota Motor Corporation es una empresa multinacional japonesa dedicada a la fabricación de automóviles. Es la mayor empresa automovilística del mundo por volumen de producción y ventas.";
+            break;
+        }
+        paragraph.style.opacity = '1'; // Muestra el nuevo texto suavemente
+      }, 500); // Espera a que la opacidad sea 0 antes de cambiar el texto
+    });
 
-  window.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
-    const imgContainerVisible = scrollPosition + windowHeight >= imgContainerTop && scrollPosition <= imgContainerTop + imgContainerHeight;
-
-    if (imgContainerVisible) {
-      // Images are coming into view, fade in
-      images.forEach((img) => {
-        img.style.opacity = '0';
-        img.style.transition = 'opacity 0.5s ease-in-out';
-      });
-      paragraph.style.opacity = '0';
-      paragraph.style.transition = 'opacity 0.5s ease-in-out';
-    } else {
-      // Images are leaving the view, fade out
-      images.forEach((img) => {
-        img.style.opacity = '1';
-        img.style.transition = 'opacity 0.5s ease-in-out';
-      });
-      paragraph.style.opacity = '1';
-      paragraph.style.transition = 'opacity 0.5s ease-in-out';
-    }
+    img.addEventListener('mouseout', () => {
+      paragraph.style.opacity = '0'; // Oculta el texto suavemente
+      setTimeout(() => {
+        paragraph.textContent = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic, veritatis. Nostrum, totam. Quod mollitia, molestias necessitatibus unde eveniet corporis cum odit consectetur ex voluptatem aspernatur natus dolorum dolores optio! Quam.";
+        paragraph.style.opacity = '1'; // Muestra el texto por defecto suavemente
+      }, 500); // Espera a que la opacidad sea 0 antes de cambiar el texto
+    });
   });
 </script>
