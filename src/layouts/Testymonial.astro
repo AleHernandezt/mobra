@@ -3,72 +3,61 @@ import Titulo from "../components/Titulo.astro";
 ---
 
 <section
-  class="p-16 pt-20 flex flex-col justify-start items-center relative mb-16"
+  class="p-16 pt-20 flex flex-col justify-start items-center relative mb-16 h-screen"
   id="Testymonial"
 >
   <Titulo
     title="Testymonial"
-    subtitle="Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, facilis?"
+    subtitle="Our clients' experiences drive our excellence."
   />
 
-  <div class="flex justify-center relative">
-    <!-- Testimonial container -->
+  <div class="flex justify-center relative my-auto">
     <div id="testimonial-wrapper" class="overflow-hidden w-full max-w-3xl">
-      <!-- Aumentar el ancho máximo -->
       <div id="testimonial-container" class="flex">
-        <!-- Testimonial items will be rendered here -->
       </div>
     </div>
   </div>
 
   <div class="flex justify-center w-full max-w-3xl mt-4">
-    <!-- Aumentar el ancho máximo y centrar -->
     <button
       id="prev"
       class="bg-transparent text-yellow-500 text-2xl hover:text-yellow-600 mx-2"
       >&lt;</button
     >
-    <!-- Flecha izquierda -->
     <button
       id="next"
       class="bg-transparent text-yellow-500 text-2xl hover:text-yellow-600 mx-2"
       >&gt;</button
     >
-    <!-- Flecha derecha -->
   </div>
 
   <style>
-    /* Add styles for the testimonial container */
     #testimonial-wrapper {
       overflow: hidden;
-      border: 2px solid #fbbf24; /* Border color */
-      border-radius: 8px; /* Rounded corners */
-      padding: 1rem; /* Espacio entre el borde y el contenido */
+      border: 2px solid #fbbf24;
+      border-radius: 8px;
+      padding: 1rem;
     }
     #testimonial-container {
       display: flex;
     }
 
     .testimonial {
-      min-width: 100%; /* Each testimonial takes full width */
-      padding: 16px; /* Padding for the testimonial */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
-      background-color: white; /* Background color */
-      border-radius: 8px; /* Rounded corners */
-      word-wrap: break-word; /* Allow long words to break to next line */
+      min-width: 100%;
+      padding: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      background-color: white;
+      border-radius: 8px;
+      word-wrap: break-word;
     }
 
     .testimonial p {
-      margin: 1rem 0; /* Espacio entre el título y el texto */
+      margin: 1rem 0;
     }
   </style>
   <script lang="ts">
-    // Get the testimonial container
-    const testimonialContainer = document.getElementById(
-      "testimonial-container"
-    );
+    const testimonialContainer = document.getElementById("testimonial-container");
 
-    // Define the testimonials data
     const testimonials = [
       {
         autor: "Anzel Teguris:",
@@ -92,13 +81,10 @@ import Titulo from "../components/Titulo.astro";
       },
     ];
 
-    // Initialize the current testimonial index
     let currentIndex = 0;
 
-    // Render the initial testimonial
     renderTestimonial();
 
-    // Function to render the current testimonial
     function renderTestimonial() {
       const testimonial = testimonials[currentIndex];
       testimonialContainer.innerHTML = `
@@ -109,7 +95,6 @@ import Titulo from "../components/Titulo.astro";
             `;
     }
 
-    // Add event listeners for navigation buttons
     document.getElementById("prev").addEventListener("click", () => {
       currentIndex =
         currentIndex > 0 ? currentIndex - 1 : testimonials.length - 1;
