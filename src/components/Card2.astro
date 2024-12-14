@@ -64,15 +64,16 @@ const {
       includes.map((include, index) => (
         <div class="flex items-center">
           <svg
-            class="w-5 h-5 text-black rounded mr-2"
+            class="w-6 h-6 text-black rounded mr-2"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
           >
+            {/* stroke-width es para el tamaño del icono */}
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
-              stroke-width="2"
+              stroke-width="4" 
               d="M5 13l4 4L19 7"
             />
           </svg>
@@ -82,10 +83,4 @@ const {
     }
   </div>
   <BtnCard class="mx-4 mb-4">{action}</BtnCard>
-<!-- 
-  <style>
-    #card2{
-        background-color: #fbcc0f;
-    }
-  </style> -->
 </section>
