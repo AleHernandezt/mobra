@@ -10,12 +10,13 @@ interface Props {
   includes: string[];
   action: string;
   className?: string; // Añadido para clases adicionales
+  id?: string; // Añadido para ID
 }
 
-const { image, title, subtitle, description, actionTitle, includes, action, className = '' } = Astro.props;
+const { image, title, subtitle, description, actionTitle, includes, action, className = '', id } = Astro.props;
 ---
 
-<section class={`p-4 pt-8 w-80 bg-white rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110 ${className}`}>
+<section id={id} class={`p-4 pt-8 w-80 bg-white rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110 ${className}`}>
   <div class="flex flex-row p-2 transition duration-500 ease-in-out">
     <img src={image} alt="Imagen" class="w-10 h-10 object-cover rounded" />
     <div class="ml-2">
@@ -39,19 +40,17 @@ const { image, title, subtitle, description, actionTitle, includes, action, clas
   <BtnCard2 class="mx-4 mb-4">{action}</BtnCard2>
 </section>
 <style>
- 
-    .box {
-      background-color: white;
-      transition: background-color 0.3s;
-    }
-    .box:nth-child(2) {
-      background-color: yellow;
-    }
-    .box:hover {
-      background-color: yellow;
-    }
-    .box:hover + .box:nth-child(2) {
-      background-color: white;
-    }
-  
+#card2 { 
+  background-color: #FBBF24; 
+} 
+
+#card1:hover ~ #card2, 
+#card3:hover ~ #card2 { 
+  background-color: white; 
+} 
+
+#card1:hover, 
+#card3:hover { 
+  background-color: #FBBF24; 
+}
 </style>
