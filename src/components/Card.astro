@@ -11,12 +11,14 @@ interface Props {
   action: string;
   className?: string; // Añadido para clases adicionales
   id?: string; // Añadido para ID
+  width?: string; // Añadido para ancho
+
 }
 
-const { image, title, subtitle, description, actionTitle, includes, action, className = '', id } = Astro.props;
+const { image, title, subtitle, description, actionTitle, includes, action, className = '', id, width = 'w-80'} = Astro.props;
 ---
 
-<section id={id} class={`p-4 pt-8 w-80 bg-white rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110 ${className}`}>
+<section id={id} class={`p-4 pt-8 ${width} bg-white rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110 ${className}`}>
   <div class="flex flex-row p-2 transition duration-500 ease-in-out">
     <img src={image} alt="Imagen" class="w-10 h-10 object-cover rounded" />
     <div class="ml-2">
