@@ -9,19 +9,15 @@ interface Props {
   actionTitle: string;
   includes: string[];
   action: string;
+  className?: string; // Añadido para clases adicionales
 }
-const { image } = Astro.props;
-const { title } = Astro.props;
-const { subtitle } = Astro.props;
-const { description } = Astro.props;
-const { actionTitle } = Astro.props;
-const { includes } = Astro.props;
-const { action } = Astro.props;
 
+const { image, title, subtitle, description, actionTitle, includes, action, className = '' } = Astro.props;
 ---
-<section class="p-4 pt-8 w-80 bg-white rounded-lg shadow-md hover:bg-yellow-500 transition duration-500 ease-in-out scale-100 hover:scale-110">
+
+<section class={`p-4 pt-8 w-80 bg-white rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110 ${className}`}>
   <div class="flex flex-row p-2 transition duration-500 ease-in-out">
-    <img src={Astro.props.image} alt="Imagen" class="w-10 h-10 object-cover rounded" /> <!-- Imagen con bordes redondeados -->
+    <img src={image} alt="Imagen" class="w-10 h-10 object-cover rounded" />
     <div class="ml-2">
       <h3 class="text-lg font-bold text-black">{title}</h3>
       <h4 class="text-sm text-black">{subtitle}</h4>
@@ -31,7 +27,7 @@ const { action } = Astro.props;
   <h3 class="text-4xl font-bold p-2 py-4 text-black transition duration-500 ease-in-out">{actionTitle}</h3>
   <h4 class="p-2 text-black transition duration-500 ease-in-out">What's included</h4>
   <div class="flex flex-col p-2 transition duration-500 ease-in-out py-10">
-    {includes.map((include, index) => (
+    {includes.map((include) => (
       <div class="flex items-center">
         <svg class="w-5 h-5 text-black mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
@@ -40,8 +36,22 @@ const { action } = Astro.props;
       </div>
     ))}
   </div>
-  <div class="">
-  <BtnCard2>{action}</BtnCard2>
-
-  </div>
+  <BtnCard2 class="mx-4 mb-4">{action}</BtnCard2>
 </section>
+<style>
+ 
+    .box {
+      background-color: white;
+      transition: background-color 0.3s;
+    }
+    .box:nth-child(2) {
+      background-color: yellow;
+    }
+    .box:hover {
+      background-color: yellow;
+    }
+    .box:hover + .box:nth-child(2) {
+      background-color: white;
+    }
+  
+</style>

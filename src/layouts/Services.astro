@@ -5,13 +5,10 @@ import Titulo from "../components/Titulo.astro";
 ---
 
 <section
-class="p-16 pt-20 flex flex-col justify-start items-center relative"
-id="Services"
+  class="p-16 pt-20 flex flex-col justify-start items-center relative"
+  id="Services"
 >
-  <Titulo
-    title="Services & Pricing"
-    subtitle=""
-  />
+  <Titulo title="Services & Pricing" subtitle="" />
 
   <div class="flex gap-10">
     <Card
@@ -23,13 +20,15 @@ id="Services"
         "Exterior wash",
         "Wheel polishing",
         "Wheel silicone",
-        "Vacuuming"
+        "Vacuuming",
       ]}
       action="Get Started"
       image="img4.jpg"
+      className="box"
+
     />
 
-    <Card2
+    <Card
       title="For Startups"
       subtitle="Pro"
       description="MOBRA PRO PACKAGE"
@@ -42,6 +41,7 @@ id="Services"
       ]}
       action="Get Started"
       image="img5.jpg"
+      className="box"
     />
     <Card
       title="For Big Companies"
@@ -57,6 +57,9 @@ id="Services"
       ]}
       action="Get Started"
       image="img6.jpg"
+      className="box"
+
     />
   </div>
+  
 </section>
