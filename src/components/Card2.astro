@@ -1,6 +1,6 @@
 ---
-import Btn from './Btn.astro';
-import BtnCard from './BtnCard.astro';
+import Btn from "./Btn.astro";
+import BtnCard from "./BtnCard.astro";
 
 interface Props {
   image: string;
@@ -10,37 +10,82 @@ interface Props {
   actionTitle: string;
   includes: string[];
   action: string;
+  className?: string; // Añadido para clases adicionales
+  id?: string; // Añadido para ID
+  width?: string; // Añadido para ancho
 }
-const { image } = Astro.props;
-const { title } = Astro.props;
-const { subtitle } = Astro.props;
-const { description } = Astro.props;
-const { actionTitle } = Astro.props;
-const { includes } = Astro.props;
-const { action } = Astro.props;
-
+const {
+  image,
+  title,
+  subtitle,
+  description,
+  actionTitle,
+  includes,
+  action,
+  className = "",
+  id,
+  width = "w-80",
+} = Astro.props;
 ---
-<section class="p-4 pt-8 w-80 lg:w-96 bg-yellow-500 rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110">
-  <div class="flex flex-row p-2 transition duration-500 ease-in-out items-center justify-evenly">
-    <img src={Astro.props.image} alt="Imagen" class="w-10 h-10 object-cover rounded" /> <!-- Imagen con bordes redondeados -->
+
+<section id={id} class={`p-4 pt-8 ${width} bg-white rounded-lg shadow-md transition duration-500 ease-in-out scale-100 hover:scale-110 ${className}`}>
+  <div
+    class="flex flex-row p-2 transition duration-500 ease-in-out items-center justify-evenly"
+  >
+    <img
+      src={Astro.props.image}
+      alt="Imagen"
+      class="w-10 h-10 object-cover rounded"
+    />
+    <!-- Imagen con bordes redondeados -->
     <div class="ml-2">
       <h3 class="text-lg font-bold text-black">{title}</h3>
       <h4 class="text-sm text-black">{subtitle}</h4>
     </div>
-    <a href="#" class="bg-[#131614] rounded-md py-1 px-2 text-white hover:bg-white hover:text-yellow-500 transition duration-300 ease-in-out ml-2">Popular</a>
+    <a
+      href="#"
+      class="bg-[#131614] rounded-md py-1 px-2 text-white hover:bg-white hover:text-yellow-500 transition duration-300 ease-in-out ml-2"
+      >Popular</a
+    >
   </div>
-  <p class="text-gray-500 p-2 py-4 transition duration-500 ease-in-out text-xs">{description}</p>
-  <h3 class="text-4xl font-bold p-2 py-4 text-black transition duration-500 ease-in-out">{actionTitle}</h3>
-  <h4 class="p-2 text-black transition duration-500 ease-in-out">What's included</h4>
+  <p class="text-gray-500 p-2 py-4 transition duration-500 ease-in-out text-xs">
+    {description}
+  </p>
+  <h3
+    class="text-4xl font-bold p-2 py-4 text-black transition duration-500 ease-in-out"
+  >
+    {actionTitle}
+  </h3>
+  <h4 class="p-2 text-black transition duration-500 ease-in-out">
+    What's included
+  </h4>
   <div class="flex flex-col p-2 transition duration-500 ease-in-out py-10">
-    {includes.map((include, index) => (
-      <div class="flex items-center">
-        <svg class="w-5 h-5 text-black rounded mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-        </svg>
-        <p class="text-sm text-black">{include}</p>
-      </div>
-    ))}
+    {
+      includes.map((include, index) => (
+        <div class="flex items-center">
+          <svg
+            class="w-5 h-5 text-black rounded mr-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+          <p class="text-sm text-black">{include}</p>
+        </div>
+      ))
+    }
   </div>
   <BtnCard class="mx-4 mb-4">{action}</BtnCard>
+<!-- 
+  <style>
+    #card2{
+        background-color: yellow;
+    }
+  </style> -->
 </section>
